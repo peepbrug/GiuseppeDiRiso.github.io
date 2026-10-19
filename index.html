@@ -1,208 +1,882 @@
 <!DOCTYPE html>
 <html lang="it" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giuseppe Di Riso | Data Scientist &amp; Information Systems Specialist</title>
-<meta name="description" content="Portfolio di Giuseppe Di Riso: data science, analisi statistica, sistemi informativi aziendali e agenti AI (MCP Server). Università degli Studi di Salerno.">
-<meta name="theme-color" content="#0b1020">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<script>
-  document.documentElement.classList.add('js');
-  try {
-    var t = localStorage.getItem('theme');
-    if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
-</script>
-<style>
-  :root{
-    --bg:#0b1020; --bg2:#111833; --card:#141c3a; --card-b:#25305c;
-    --text:#e8ecff; --muted:#9aa6d1; --accent:#7c8cff; --accent2:#2dd4bf; --warm:#ffb454;
-    --term:#070b18; --ok:#4ade80; --shadow:0 10px 40px rgba(0,0,0,.35);
-    --radius:18px;
-  }
-  :root[data-theme="light"]{
-    --bg:#f6f7fd; --bg2:#eceffc; --card:#ffffff; --card-b:#dfe3f6;
-    --text:#161a33; --muted:#5a6390; --accent:#4f5bd5; --accent2:#0e9f8e; --warm:#c46a00;
-    --term:#101531; --shadow:0 10px 30px rgba(40,50,120,.12);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--bg); color:var(--text);
-    font-family:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.6;
-    background-image:
-      radial-gradient(900px 500px at 85% -10%, color-mix(in srgb,var(--accent) 22%, transparent), transparent 60%),
-      radial-gradient(700px 400px at -10% 20%, color-mix(in srgb,var(--accent2) 16%, transparent), transparent 60%);
-    background-repeat:no-repeat;
-  }
-  a{color:inherit}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
-  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giuseppe Di Riso | Data Scientist &amp; Information Systems</title>
+  <meta name="description" content="Portfolio di Giuseppe Di Riso: data science, machine learning, sistemi informativi aziendali e agenti AI (MCP). Università di Salerno." />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg2: #111833;
+      --card: #141c3a;
+      --card-b: #25305c;
+      --text: #e8ecff;
+      --muted: #9aa6d1;
+      --accent: #7c8cff;
+      --accent2: #2dd4bf;
+      --warm: #ffb454;
+      --term: #070b18;
+      --ok: #4ade80;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
+    }
 
-  /* NAV */
-  nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px); background:color-mix(in srgb,var(--bg) 78%, transparent); border-bottom:1px solid var(--card-b)}
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px; gap:12px}
-  .logo{font-weight:700; text-decoration:none; letter-spacing:-.02em}
-  .logo span{color:var(--accent)}
-  .links{display:flex; gap:20px; align-items:center}
-  .links a{text-decoration:none; color:var(--muted); font-size:.95rem; transition:color .2s}
-  .links a:hover{color:var(--text)}
-  .theme{border:1px solid var(--card-b); background:var(--card); color:var(--text); border-radius:999px; width:38px; height:38px; cursor:pointer; font-size:1rem}
-  @media(max-width:640px){ .links a.hide-sm{display:none} }
+    :root[data-theme="light"] {
+      --bg: #f6f7fd;
+      --bg2: #eceffc;
+      --card: #ffffff;
+      --card-b: #dfe3f6;
+      --text: #161a33;
+      --muted: #5a6390;
+      --accent: #4f5bd5;
+      --accent2: #0e9f8e;
+      --warm: #c46a00;
+      --term: #101531;
+      --shadow: 0 10px 30px rgba(40, 50, 120, 0.12);
+    }
 
-  /* HERO */
-  .hero{padding:72px 0 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center}
-  @media(max-width:860px){ .hero{grid-template-columns:1fr; padding-top:48px} }
-  .eyebrow{display:inline-flex; gap:8px; align-items:center; font-size:.85rem; color:var(--accent2); border:1px solid color-mix(in srgb,var(--accent2) 40%, transparent); padding:4px 12px; border-radius:999px; background:color-mix(in srgb,var(--accent2) 10%, transparent)}
-  .dot{width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 0 var(--ok); animation:pulse 2s infinite}
-  @keyframes pulse{70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent}}
-  h1{font-size:clamp(2.4rem,6vw,4rem); line-height:1.05; margin:18px 0 12px; letter-spacing:-.03em}
-  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .wave{display:inline-block; transform-origin:70% 70%; animation:wave 2.4s ease-in-out infinite}
-  @keyframes wave{0%,60%,100%{transform:rotate(0)} 10%,30%{transform:rotate(14deg)} 20%{transform:rotate(-8deg)} 40%{transform:rotate(-4deg)} 50%{transform:rotate(10deg)}}
-  .role{font-size:1.15rem; color:var(--muted); margin:0 0 18px}
-  .role b{color:var(--text)}
-  .lead{max-width:560px; color:var(--muted)}
-  .lead strong{color:var(--text)}
-  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
-  .btn{display:inline-flex; align-items:center; gap:8px; padding:11px 20px; border-radius:12px; font-weight:500; text-decoration:none; border:1px solid var(--card-b); background:var(--card); transition:transform .15s, border-color .2s, box-shadow .2s}
-  .btn:hover{transform:translateY(-2px); border-color:var(--accent); box-shadow:var(--shadow)}
-  .btn.primary{background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%, var(--accent2))); color:#fff; border-color:transparent}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-image:
+        radial-gradient(900px 500px at 85% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+        radial-gradient(700px 400px at -10% 20%, color-mix(in srgb, var(--accent2) 16%, transparent), transparent 60%);
+      background-repeat: no-repeat;
+    }
 
-  /* TERMINAL */
-  .term{background:var(--term); border:1px solid var(--card-b); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; color:#d7defa}
-  .term-bar{display:flex; align-items:center; gap:7px; padding:10px 14px; background:#0e1430; border-bottom:1px solid #1c2652}
-  .term-bar i{width:11px; height:11px; border-radius:50%; display:block}
-  .term-bar i:nth-child(1){background:#ff5f57} .term-bar i:nth-child(2){background:#febc2e} .term-bar i:nth-child(3){background:#28c840}
-  .term-bar span{margin-left:8px; font-size:.78rem; color:#8390c4}
-  .term-body{padding:16px; font-size:.82rem; line-height:1.65; min-height:290px; white-space:pre-wrap; word-break:break-word}
-  .t-prompt{color:#4ade80} .t-path{color:#7c8cff} .t-key{color:#7dd3fc} .t-str{color:#fcd34d}
-  .caret{display:inline-block; width:8px; height:1em; background:#d7defa; vertical-align:-2px; animation:blink 1s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
+    a { color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; }
 
-  /* SECTIONS */
-  section{padding:56px 0}
-  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:26px}
-  .sec-head h2{font-size:clamp(1.6rem,3.5vw,2.2rem); margin:0; letter-spacing:-.02em}
-  .sec-head small{color:var(--muted)}
-  .grid{display:grid; gap:18px}
-  .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr); align-items:start}
-  @media(max-width:860px){ .g3,.g2{grid-template-columns:1fr} }
-  .card{background:var(--card); border:1px solid var(--card-b); border-radius:var(--radius); padding:22px; transition:transform .2s, border-color .2s, box-shadow .2s}
-  .card:hover{border-color:color-mix(in srgb,var(--accent) 60%, var(--card-b))}
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom: 1px solid var(--card-b);
+    }
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 12px;
+    }
+    .logo { font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .links { display: flex; gap: 20px; align-items: center; }
+    .links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+    .links a:hover { color: var(--text); }
+    .theme {
+      border: 1px solid var(--card-b);
+      background: var(--card);
+      color: var(--text);
+      border-radius: 999px;
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    @media (max-width: 640px) {
+      .links a.hide-sm { display: none; }
+    }
 
-  /* STATS */
-  .stat .num{font-size:2.4rem; font-weight:700; letter-spacing:-.03em; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .stat p{margin:2px 0 0; color:var(--muted); font-size:.95rem}
+    .hero {
+      padding: 72px 0 40px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding-top: 48px; }
+    }
 
-  /* SKILLS */
-  .skill-group h3{margin:0 0 12px; font-size:1rem; color:var(--muted); font-weight:500; text-transform:uppercase; letter-spacing:.08em}
-  .chips{display:flex; flex-wrap:wrap; gap:8px}
-  .chip{font-size:.85rem; padding:5px 12px; border-radius:999px; border:1px solid var(--card-b); background:var(--bg2); transition:transform .15s, border-color .2s}
-  .chip:hover{transform:translateY(-2px); border-color:var(--accent)}
-  .lang{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 0}
-  .lang + .lang{border-top:1px dashed var(--card-b)}
-  .bar{height:8px; border-radius:99px; background:var(--bg2); width:130px; overflow:hidden}
-  .bar b{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:99px; width:0; transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-  .badge{font-size:.75rem; padding:2px 9px; border-radius:99px; background:color-mix(in srgb,var(--accent2) 16%, transparent); color:var(--accent2); font-weight:600}
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--accent2);
+      border: 1px solid color-mix(in srgb, var(--accent2) 40%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent2) 10%, transparent);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 0 var(--ok);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 8px transparent; }
+      100% { box-shadow: 0 0 0 0 transparent; }
+    }
 
-  /* PROJECTS */
-  .proj{display:flex; flex-direction:column; gap:14px; position:relative}
-  .proj-top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap}
-  .area{font-size:.78rem; color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:.08em}
-  .star{font-size:.75rem; padding:2px 10px; border-radius:99px; background:color-mix(in srgb,var(--warm) 18%, transparent); color:var(--warm); font-weight:600}
-  .proj h3{margin:0; font-size:1.35rem; letter-spacing:-.01em}
-  .proj p{margin:0; color:var(--muted)}
-  .proj p strong, .proj li strong{color:var(--text)}
-  .insight{border-left:3px solid var(--warm); padding:8px 14px; background:color-mix(in srgb,var(--warm) 9%, transparent); border-radius:0 10px 10px 0; font-size:.95rem}
-  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(88px,1fr)); gap:10px}
-  .metric{background:var(--bg2); border-radius:12px; padding:10px 12px; text-align:center}
-  .metric b{display:block; font-size:1.25rem; color:var(--text)} .metric span{font-size:.75rem; color:var(--muted)}
-  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto}
-  .stack span{font-size:.75rem; padding:3px 10px; border-radius:8px; background:var(--bg2); color:var(--muted); font-family:'JetBrains Mono',monospace}
-  details{border-top:1px dashed var(--card-b); padding-top:10px}
-  summary{cursor:pointer; font-weight:500; color:var(--accent); list-style:none}
-  summary::-webkit-details-marker{display:none}
-  summary::before{content:'▸ '; display:inline-block; transition:transform .2s}
-  details[open] summary::before{transform:rotate(90deg)}
-  details ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:.95rem}
-  details li{margin:5px 0}
-  .flow{display:flex; align-items:center; flex-wrap:wrap; gap:6px; font-size:.82rem}
-  .flow span{padding:4px 12px; border-radius:99px; border:1px solid var(--card-b); background:var(--bg2)}
-  .flow span.done{border-color:var(--ok); color:var(--ok)}
-  .flow em{color:var(--muted); font-style:normal}
-  .split{display:flex; height:30px; border-radius:10px; overflow:hidden; font-size:.74rem; font-weight:600; color:#0b1020}
-  .split div{display:flex; align-items:center; justify-content:center; white-space:nowrap; overflow:hidden; padding:0 6px; width:0; transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-  .split-legend{display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); gap:6px; flex-wrap:wrap}
-  .chat{background:var(--term); border-radius:14px; padding:12px 14px; font-size:.8rem; color:#d7defa; display:grid; gap:8px}
-  .chat .me{justify-self:end; background:#26306a; padding:6px 12px; border-radius:12px 12px 2px 12px; max-width:90%}
-  .chat .ai{background:#101a3d; padding:6px 12px; border-radius:12px 12px 12px 2px; max-width:95%}
-  .chat code{color:#fcd34d}
-  .tools{display:grid; gap:8px; grid-template-columns:repeat(2,1fr)}
-  @media(max-width:520px){ .tools{grid-template-columns:1fr} }
-  .tool{background:var(--bg2); border-radius:10px; padding:8px 10px; font-size:.82rem}
-  .tool code{display:block; color:var(--accent2); font-size:.78rem; margin-bottom:2px}
-  .tool span{color:var(--muted)}
-  .wide{grid-column:1/-1}
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.05;
+      margin: 18px 0 12px;
+      letter-spacing: -0.03em;
+    }
+    h1 .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .wave {
+      display: inline-block;
+      transform-origin: 70% 70%;
+      animation: wave 2.4s ease-in-out infinite;
+    }
+    @keyframes wave {
+      0%, 60%, 100% { transform: rotate(0); }
+      10%, 30% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+    }
+    .role { font-size: 1.15rem; color: var(--muted); margin: 0 0 18px; }
+    .role b { color: var(--text); }
+    .lead { max-width: 560px; color: var(--muted); }
+    .lead strong { color: var(--text); }
 
-  /* CONTACT */
-  .contact{text-align:center; padding:48px 24px; border-radius:24px; border:1px solid var(--card-b);
-    background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%, var(--card)),color-mix(in srgb,var(--accent2) 12%, var(--card)))}
-  .contact h2{margin:0 0 8px; font-size:clamp(1.6rem,4vw,2.4rem); letter-spacing:-.02em}
-  .contact p{color:var(--muted); max-width:520px; margin:0 auto 24px}
-  .contact .cta{justify-content:center; margin-top:0}
-  footer{padding:28px 0 40px; text-align:center; color:var(--muted); font-size:.85rem}
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--card-b);
+      background: var(--card);
+      transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--accent2)));
+      color: #fff;
+      border-color: transparent;
+    }
 
-  /* REVEAL */
-  .js .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
-  .js .reveal.in{opacity:1; transform:none}
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important} html{scroll-behavior:auto}
-    .js .reveal{opacity:1; transform:none}
-  }
-  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px}
-</style>
+    .term {
+      background: var(--term);
+      border: 1px solid var(--card-b);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      color: #d7defa;
+    }
+    .term-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 14px;
+      background: #0e1430;
+      border-bottom: 1px solid #1c2652;
+    }
+    .term-bar i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: block;
+    }
+    .term-bar i:nth-child(1) { background: #ff5f57; }
+    .term-bar i:nth-child(2) { background: #febc2e; }
+    .term-bar i:nth-child(3) { background: #28c840; }
+    .term-bar span { margin-left: 8px; font-size: 0.78rem; color: #8390c4; }
+    .term-body {
+      padding: 16px;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      min-height: 290px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .t-prompt { color: #4ade80; }
+    .t-path { color: #7c8cff; }
+    .t-key { color: #7dd3fc; }
+    .t-str { color: #fcd34d; }
+    .caret {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: #d7defa;
+      vertical-align: -2px;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    section { padding: 56px 0; }
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+    .sec-head h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .sec-head small { color: var(--muted); }
+
+    .grid { display: grid; gap: 18px; }
+    .g3 { grid-template-columns: repeat(3, 1fr); }
+    .g2 { grid-template-columns: repeat(2, 1fr); align-items: start; }
+    @media (max-width: 860px) {
+      .g3, .g2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-b);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { border-color: color-mix(in srgb, var(--accent) 60%, var(--card-b)); }
+
+    .stat .num {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stat p { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
+
+    .skill-group h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 0.85rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--card-b);
+      background: var(--bg2);
+      transition: transform 0.15s ease, border-color 0.2s ease;
+    }
+    .chip:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+    .lang {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    .lang + .lang { border-top: 1px dashed var(--card-b); }
+    .bar {
+      height: 8px;
+      border-radius: 99px;
+      background: var(--bg2);
+      width: 130px;
+      overflow: hidden;
+    }
+    .bar b {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 99px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(.2, .8, .2, 1);
+    }
+    .badge {
+      font-size: 0.75rem;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent2) 16%, transparent);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .proj {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+    .proj-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .area {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .star {
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--warm) 18%, transparent);
+      color: var(--warm);
+      font-weight: 600;
+    }
+    .proj h3 { margin: 0; font-size: 1.35rem; letter-spacing: -0.01em; }
+    .proj p { margin: 0; color: var(--muted); }
+    .proj p strong, .proj li strong { color: var(--text); }
+    .insight {
+      border-left: 3px solid var(--warm);
+      padding: 8px 14px;
+      background: color-mix(in srgb, var(--warm) 9%, transparent);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.95rem;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+      gap: 10px;
+    }
+    .metric {
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .metric b { display: block; font-size: 1.25rem; color: var(--text); }
+    .metric span { font-size: 0.75rem; color: var(--muted); }
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .stack span {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: var(--bg2);
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    details {
+      border-top: 1px dashed var(--card-b);
+      padding-top: 10px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--accent);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: '▸ ';
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    details li { margin: 5px 0; }
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.82rem;
+    }
+    .flow span {
+      padding: 4px 12px;
+      border-radius: 99px;
+      border: 1px solid var(--card-b);
+      background: var(--bg2);
+    }
+    .flow span.done { border-color: var(--ok); color: var(--ok); }
+    .flow em { color: var(--muted); font-style: normal; }
+    .split {
+      display: flex;
+      height: 30px;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #0b1020;
+    }
+    .split div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0 6px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(.2, .8, .2, 1);
+    }
+    .split-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--muted);
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .chat {
+      background: var(--term);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      color: #d7defa;
+      display: grid;
+      gap: 8px;
+    }
+    .chat .me {
+      justify-self: end;
+      background: #26306a;
+      padding: 6px 12px;
+      border-radius: 12px 12px 2px 12px;
+      max-width: 90%;
+    }
+    .chat .ai {
+      background: #101a3d;
+      padding: 6px 12px;
+      border-radius: 12px 12px 12px 2px;
+      max-width: 95%;
+    }
+    .chat code { color: #fcd34d; }
+    .tools {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 520px) {
+      .tools { grid-template-columns: 1fr; }
+    }
+    .tool {
+      background: var(--bg2);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+    }
+    .tool code {
+      display: block;
+      color: var(--accent2);
+      font-size: 0.78rem;
+      margin-bottom: 2px;
+    }
+    .tool span { color: var(--muted); }
+    .wide { grid-column: 1 / -1; }
+
+    .contact {
+      text-align: center;
+      padding: 48px 24px;
+      border-radius: 24px;
+      border: 1px solid var(--card-b);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, var(--card)), color-mix(in srgb, var(--accent2) 12%, var(--card)));
+    }
+    .contact h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: -0.02em;
+    }
+    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 24px; }
+    .contact .cta { justify-content: center; margin-top: 0; }
+
+    footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .js .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <a class="logo mono" href="#top">&lt;<span>GDR</span> /&gt;</a>
-    <div class="links">
-      <a class="hide-sm" href="#chi-sono">Chi sono</a>
-      <a class="hide-sm" href="#skill">Skill</a>
-      <a href="#progetti">Progetti</a>
-      <a href="#contatti">Contatti</a>
-      <button class="theme" id="themeBtn" aria-label="Cambia tema chiaro/scuro" title="Cambia tema">🌓</button>
-    </div>
-  </div>
-</nav>
-
-<main id="top">
-<div class="wrap">
-
-  <!-- HERO -->
-  <header class="hero">
-    <div>
-      <span class="eyebrow"><i class="dot"></i> Master's student · Università di Salerno</span>
-      <h1>Ciao, sono <span class="grad">Giuseppe</span> <span class="wave" aria-hidden="true">👋</span></h1>
-      <p class="role"><b>Data Scientist</b> &amp; <b>Information Systems</b> specialist</p>
-      <p class="lead">
-        Studente universitario presso l'<strong>Università degli Studi di Salerno</strong> in Business Information Systems e Data Science.
-        Mi appassiona trasformare processi aziendali complessi e dataset articolati in soluzioni chiare:
-        modelli statistici, flussi gestionali ed architetture basate su agenti AI interattivi.
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#progetti">Guarda i progetti →</a>
-        <a class="btn" href="https://www.linkedin.com/in/giuseppe-di-riso-56436a254" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="btn" href="https://github.com/peepbrug" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <nav>
+    <div class="wrap">
+      <a class="logo mono" href="#top">&lt;<span>GDR</span> /&gt;</a>
+      <div class="links">
+        <a class="hide-sm" href="#chi-sono">Chi sono</a>
+        <a class="hide-sm" href="#skill">Skill</a>
+        <a href="#progetti">Progetti</a>
+        <a href="#contatti">Contatti</a>
+        <button class="theme" id="themeBtn" aria-label="Cambia tema chiaro/scuro" title="Cambia tema">🌓</button>
       </div>
     </div>
+  </nav>
 
-    <div class="term" aria-label="Simulazione di terminale">
-      <div class="term-bar"><i></i><i></i><i></i><span class="mono">giuseppe@unisa: ~</span></div>
-      <div class="term-body mono" id="term" aria-live="off">
+  <main id="top">
+    <div class="wrap">
+      <header class="hero">
+        <div>
+          <span class="eyebrow"><i class="dot"></i> Master's student · Università di Salerno</span>
+          <h1>Ciao, sono <span class="grad">Giuseppe</span> <span class="wave" aria-hidden="true">👋</span></h1>
+          <p class="role"><b>Data Scientist</b> &amp; <b>Information Systems</b> specialist</p>
+          <p class="lead">
+            Studio presso l'<strong>Università di Salerno</strong> in <strong>Data Science e Gestione dell'Innovazione</strong>.
+            Mi piace trasformare processi aziendali complessi e dataset ostinati in soluzioni concrete:
+            modelli, dashboard, workflow reali e agenti AI che aiutano davvero a prendere decisioni.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#progetti">Guarda i progetti →</a>
+            <a class="btn" href="https://www.linkedin.com/in/giuseppe-di-riso-56436a254" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn" href="https://github.com/peepbrug" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="term" aria-label="Simulazione di terminale">
+          <div class="term-bar"><i></i><i></i><i></i><span class="mono">giuseppe@unisa: ~</span></div>
+          <div class="term-body mono" id="term" aria-live="off">
+            <noscript>
+<span class="t-prompt">giuseppe@unisa</span>:<span class="t-path">~</span>$ whoami
+Giuseppe Di Riso — Data Science &amp; Information Systems
+Master's student @ Università di Salerno
+Inglese B2 · Python · R · MCP · Odoo
+            </noscript>
+          </div>
+        </div>
+      </header>
+
+      <section id="chi-sono" style="padding-top: 24px;">
+        <div class="grid g3">
+          <div class="card stat reveal">
+            <div class="num"><span data-count="3">0</span></div>
+            <p>progetti reali, da processi aziendali a AI applicata</p>
+          </div>
+          <div class="card stat reveal">
+            <div class="num"><span data-count="231">0</span></div>
+            <p>film analizzati con PCA, clustering e regressione</p>
+          </div>
+          <div class="card stat reveal">
+            <div class="num">B2</div>
+            <p>inglese, consolidato con il percorso universitario</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skill">
+        <div class="sec-head">
+          <h2>Skill</h2>
+          <small>quelle che uso davvero</small>
+        </div>
+        <div class="grid g3">
+          <div class="card skill-group reveal">
+            <h3>Data &amp; AI</h3>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">R Studio</span>
+              <span class="chip">PyTorch</span>
+              <span class="chip">PCA &amp; Clustering</span>
+              <span class="chip">Regressione</span>
+            </div>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Sistemi &amp; Processi</h3>
+            <div class="chips">
+              <span class="chip">Odoo ERP</span>
+              <span class="chip">BPMN 2.0</span>
+              <span class="chip">ArchiMate 3.0</span>
+              <span class="chip">Bizagi</span>
+            </div>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Agenti AI</h3>
+            <div class="chips">
+              <span class="chip">MCP Server</span>
+              <span class="chip">Claude AI</span>
+              <span class="chip">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal" style="margin-top: 18px;">
+          <h3 class="mono" style="margin: 0 0 6px; font-size: 1rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;">Lingue</h3>
+          <div class="lang">
+            <span>🇮🇹 Italiano <span class="badge">Madrelingua</span></span>
+            <div class="bar"><b data-w="100%"></b></div>
+          </div>
+          <div class="lang">
+            <span>🇬🇧 Inglese <span class="badge">B2</span> <small style="color: var(--muted);">· livello raggiunto con l'università</small></span>
+            <div class="bar"><b data-w="70%"></b></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="progetti">
+        <div class="sec-head">
+          <h2>Progetti &amp; Case Study</h2>
+          <small>cosa ho costruito e cosa ho imparato</small>
+        </div>
+        <div class="grid g2">
+
+          <article class="card proj reveal">
+            <div class="proj-top"><span class="area">Business Information Systems</span></div>
+            <h3>🚲 ArchiBike: dal disegno al gestionale</h3>
+            <p>Modellazione e simulazione enterprise per <strong>ArchiBike S.r.l.</strong>: struttura del reparto fatturazione attiva e gestione separata dei flussi <strong>B2C</strong> e <strong>B2B</strong>, con invio allo SDI.</p>
+            <div class="flow" aria-label="Stati della fattura in Odoo">
+              <span>Bozza</span><em>→</em><span>Convalidata</span><em>→</em><span class="done">Pagata ✓</span>
+            </div>
+            <details>
+              <summary>Cosa c'è sotto il cofano</summary>
+              <ul>
+                <li><strong>ArchiMate 3.0:</strong> organigramma aziendale e ruoli coinvolti nel ciclo attivo.</li>
+                <li><strong>BPMN 2.0 su Bizagi:</strong> workflow distinti per privati e aziende.</li>
+                <li><strong>Odoo ERP:</strong> processo implementato con gli stati di fattura realmente tracciati.</li>
+                <li><strong>Lezione imparata:</strong> il modello è utile solo se funziona nel sistema reale.</li>
+              </ul>
+            </details>
+            <div class="stack"><span>Odoo ERP</span><span>BPMN 2.0</span><span>ArchiMate</span><span>Bizagi</span></div>
+          </article>
+
+          <article class="card proj reveal">
+            <div class="proj-top"><span class="area">Data Analysis &amp; Statistics</span></div>
+            <h3>🎬 Il budget non fa il successo (al cinema)</h3>
+            <p>Analisi statistica multivariata su <strong>231 film (2014–2015)</strong> del dataset Cinema Social Media, in R: cosa influenza davvero gli incassi?</p>
+            <div class="metrics">
+              <div class="metric"><b>3</b><span>componenti PCA</span></div>
+              <div class="metric"><b>64,8%</b><span>varianza spiegata</span></div>
+              <div class="metric"><b>3</b><span>cluster (Ward)</span></div>
+              <div class="metric"><b>0,61</b><span>R² adj.</span></div>
+            </div>
+            <div>
+              <div class="split" data-split>
+                <div style="background:#2dd4bf" data-w="38">88 indie</div>
+                <div style="background:#7c8cff" data-w="49.4">114 mainstream</div>
+                <div style="background:#ffb454" data-w="12.6">29</div>
+              </div>
+              <div class="split-legend">
+                <span>Nicchia · sentiment 4,5</span>
+                <span>Mainstream · hype alto</span>
+                <span>Blockbuster</span>
+              </div>
+            </div>
+            <p class="insight"><strong>Insight:</strong> budget elevati non assicurano successo. Le produzioni low-cost spesso ottengono migliori ritorni e il pubblico conta più del budget iniziale.</p>
+            <details>
+              <summary>Cosa c'è sotto il cofano</summary>
+              <ul>
+                <li><strong>Pulizia dati:</strong> valori mancanti imputati con la mediana; outlier patologici scartati.</li>
+                <li><strong>Clustering:</strong> scelta di 3 cluster per non perdere la categoria franchise.</li>
+                <li><strong>Regressione stepwise:</strong> 5 driver principali tra budget, screens, sequel, ratings e followers.</li>
+                <li><strong>Diagnostica:</strong> residui e grafici di verifiche per capire il comportamento dei dati.</li>
+              </ul>
+            </details>
+            <div class="stack"><span>R Studio</span><span>PCA</span><span>Ward</span><span>Regressione</span></div>
+          </article>
+
+          <article class="card proj reveal wide">
+            <div class="proj-top"><span class="area">Programming for Data Science</span><span class="star">⭐ Progetto in evidenza</span></div>
+            <h3>🩺 AI Clinical Assistant: un server MCP che parla con Claude</h3>
+            <p>Un assistente digitale per l'assistenza clinica che estrae, pulisce e analizza dati dei pazienti e li espone a <strong>Claude AI</strong> tramite il Model Context Protocol.</p>
+            <div class="tools">
+              <div class="tool"><code>analyze_patient</code><span>analisi del singolo paziente rispetto ai range clinici</span></div>
+              <div class="tool"><code>dataset_risk_summary</code><span>quadro di rischio sull'intero dataset</span></div>
+              <div class="tool"><code>simple_risk_score</code><span>punteggio rapido e leggibile</span></div>
+              <div class="tool"><code>analyze_similar</code><span>ricerca di pazienti con profilo simile</span></div>
+            </div>
+            <div class="chat mono" aria-label="Esempio di conversazione">
+              <div class="me">Quali pazienti assomigliano al paziente 12?</div>
+              <div class="ai">Chiamo <code>analyze_similar</code>… trovati 5 profili vicini. Ecco i range clinici a confronto 📊</div>
+            </div>
+            <details>
+              <summary>Cosa c'è sotto il cofano</summary>
+              <ul>
+                <li><strong>Data cleaning prima di tutto:</strong> il server espone dati già puliti, evitando che l'LLM ragioni su numeri sporchi.</li>
+                <li><strong>Vista clinica:</strong> rapporti e range confrontati in modo leggibile per medico e utente.</li>
+                <li><strong>Architettura MCP:</strong> ogni tool è esplicitamente definito e scelto dall'LLM in base alla richiesta.</li>
+              </ul>
+            </details>
+            <div class="stack"><span>Python</span><span>MCP / FastMCP</span><span>Claude AI</span><span>Data Cleaning</span></div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contatti">
+        <div class="contact reveal">
+          <h2>Costruiamo qualcosa insieme?</h2>
+          <p>Cerco opportunità dove dati, processi e intelligenza artificiale si incontrano. Scrivimi, rispondo volentieri.</p>
+          <div class="cta">
+            <a class="btn primary" href="mailto:g.diriso@studenti.unisa.it">✉️ Email</a>
+            <a class="btn" href="https://www.linkedin.com/in/giuseppe-di-riso-56436a254" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a>
+            <a class="btn" href="https://github.com/peepbrug" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Giuseppe Di Riso · Scafati (SA), Campania, Italia · © <span id="yr">2026</span></div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var btn = document.getElementById('themeBtn');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var root = document.documentElement;
+          var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          try { localStorage.setItem('theme', next); } catch (e) {}
+        });
+      }
+
+      var yearEl = document.getElementById('yr');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      var term = document.getElementById('term');
+      if (term) {
+        var P = '<span class="t-prompt">giuseppe@unisa</span>:<span class="t-path">~</span>$ ';
+        var script = [
+          { cmd: 'whoami', out: 'Giuseppe Di Riso — Data Science &amp; Information Systems' },
+          { cmd: 'cat about_me.json', out:
+            '{\n' +
+            '  <span class="t-key">"ateneo"</span>: <span class="t-str">"Università degli Studi di Salerno"</span>,\n' +
+            '  <span class="t-key">"corso"</span>: <span class="t-str">"Data Science e Gestione dell\'Innovazione"</span>,\n' +
+            '  <span class="t-key">"focus"</span>: [<span class="t-str">"Modellazione processi"</span>, <span class="t-str">"Analisi statistica"</span>, <span class="t-str">"AI Agents &amp; MCP"</span>],\n' +
+            '  <span class="t-key">"inglese"</span>: <span class="t-str">"B2"</span>\n' +
+            '}' },
+          { cmd: 'echo $STATUS', out: '<span class="t-prompt">Building intelligent systems &amp; data-driven solutions 🚀</span>' }
+        ];
+
+        function render(upTo) {
+          var html = '';
+          for (var i = 0; i < upTo; i++) html += P + script[i].cmd + '\n' + script[i].out + '\n\n';
+          return html;
+        }
+
+        function run() {
+          if (reduce) {
+            term.innerHTML = render(script.length) + P + '<span class="caret"></span>';
+            return;
+          }
+          term.innerHTML = '';
+          var i = 0;
+          (function next() {
+            if (i >= script.length) {
+              term.innerHTML = render(script.length) + P + '<span class="caret"></span>';
+              return;
+            }
+            var base = render(i), cmd = script[i].cmd, c = 0;
+            (function type() {
+              term.innerHTML = base + P + cmd.slice(0, c) + '<span class="caret"></span>';
+              if (c++ < cmd.length) return setTimeout(type, 55 + Math.random() * 45);
+              setTimeout(function () { i++; next(); }, 350);
+            })();
+          })();
+        }
+        run();
+      }
+
+      function animateIn(el) {
+        el.classList.add('in');
+        el.querySelectorAll('[data-count]').forEach(function (n) {
+          var target = +n.getAttribute('data-count'), start = null;
+          if (reduce) {
+            n.textContent = target;
+            return;
+          }
+          (function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / 1100, 1);
+            n.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          })(performance.now());
+        });
+
+        el.querySelectorAll('.bar b[data-w]').forEach(function (b) {
+          b.style.width = b.getAttribute('data-w');
+        });
+        el.querySelectorAll('.split div[data-w]').forEach(function (d) {
+          d.style.width = d.getAttribute('data-w') + '%';
+        });
+      }
+
+      var items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              animateIn(e.target);
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+
+        setTimeout(function () {
+          items.forEach(function (el) {
+            if (!el.classList.contains('in')) animateIn(el);
+          });
+        }, 6000);
+
+        items.forEach(function (el) { io.observe(el); });
+      } else {
+        items.forEach(animateIn);
+      }
+    })();
+  </script>
+</body>
+</html>
