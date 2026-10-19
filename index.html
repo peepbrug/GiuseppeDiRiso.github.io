@@ -1,490 +1,208 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giuseppe Di Riso | Data Scientist & Information Systems Portfolio</title>
-    <!-- Font di sistema e sviluppatore -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #0f111a;
-            --card-bg: #1a1c2a;
-            --editor-bg: #141622;
-            --accent-blue: #89b4fa;
-            --accent-green: #a6e3a1;
-            --accent-purple: #cba6f7;
-            --accent-orange: #fab387;
-            --accent-red: #f38ba8;
-            --text-main: #cdd6f4;
-            --text-muted: #a6adc8;
-            --border-color: #313244;
-            --font-code: 'Fira Code', monospace;
-            --font-sans: 'Inter', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giuseppe Di Riso | Data Scientist &amp; Information Systems Specialist</title>
+<meta name="description" content="Portfolio di Giuseppe Di Riso: data science, analisi statistica, sistemi informativi aziendali e agenti AI (MCP Server). Università degli Studi di Salerno.">
+<meta name="theme-color" content="#0b1020">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  document.documentElement.classList.add('js');
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#111833; --card:#141c3a; --card-b:#25305c;
+    --text:#e8ecff; --muted:#9aa6d1; --accent:#7c8cff; --accent2:#2dd4bf; --warm:#ffb454;
+    --term:#070b18; --ok:#4ade80; --shadow:0 10px 40px rgba(0,0,0,.35);
+    --radius:18px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f7fd; --bg2:#eceffc; --card:#ffffff; --card-b:#dfe3f6;
+    --text:#161a33; --muted:#5a6390; --accent:#4f5bd5; --accent2:#0e9f8e; --warm:#c46a00;
+    --term:#101531; --shadow:0 10px 30px rgba(40,50,120,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.6;
+    background-image:
+      radial-gradient(900px 500px at 85% -10%, color-mix(in srgb,var(--accent) 22%, transparent), transparent 60%),
+      radial-gradient(700px 400px at -10% 20%, color-mix(in srgb,var(--accent2) 16%, transparent), transparent 60%);
+    background-repeat:no-repeat;
+  }
+  a{color:inherit}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  /* NAV */
+  nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px); background:color-mix(in srgb,var(--bg) 78%, transparent); border-bottom:1px solid var(--card-b)}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px; gap:12px}
+  .logo{font-weight:700; text-decoration:none; letter-spacing:-.02em}
+  .logo span{color:var(--accent)}
+  .links{display:flex; gap:20px; align-items:center}
+  .links a{text-decoration:none; color:var(--muted); font-size:.95rem; transition:color .2s}
+  .links a:hover{color:var(--text)}
+  .theme{border:1px solid var(--card-b); background:var(--card); color:var(--text); border-radius:999px; width:38px; height:38px; cursor:pointer; font-size:1rem}
+  @media(max-width:640px){ .links a.hide-sm{display:none} }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  /* HERO */
+  .hero{padding:72px 0 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center}
+  @media(max-width:860px){ .hero{grid-template-columns:1fr; padding-top:48px} }
+  .eyebrow{display:inline-flex; gap:8px; align-items:center; font-size:.85rem; color:var(--accent2); border:1px solid color-mix(in srgb,var(--accent2) 40%, transparent); padding:4px 12px; border-radius:999px; background:color-mix(in srgb,var(--accent2) 10%, transparent)}
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 0 var(--ok); animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-size:clamp(2.4rem,6vw,4rem); line-height:1.05; margin:18px 0 12px; letter-spacing:-.03em}
+  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .wave{display:inline-block; transform-origin:70% 70%; animation:wave 2.4s ease-in-out infinite}
+  @keyframes wave{0%,60%,100%{transform:rotate(0)} 10%,30%{transform:rotate(14deg)} 20%{transform:rotate(-8deg)} 40%{transform:rotate(-4deg)} 50%{transform:rotate(10deg)}}
+  .role{font-size:1.15rem; color:var(--muted); margin:0 0 18px}
+  .role b{color:var(--text)}
+  .lead{max-width:560px; color:var(--muted)}
+  .lead strong{color:var(--text)}
+  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:11px 20px; border-radius:12px; font-weight:500; text-decoration:none; border:1px solid var(--card-b); background:var(--card); transition:transform .15s, border-color .2s, box-shadow .2s}
+  .btn:hover{transform:translateY(-2px); border-color:var(--accent); box-shadow:var(--shadow)}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%, var(--accent2))); color:#fff; border-color:transparent}
 
-        /* IDE Window Frame */
-        .ide-container {
-            background: var(--editor-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
+  /* TERMINAL */
+  .term{background:var(--term); border:1px solid var(--card-b); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; color:#d7defa}
+  .term-bar{display:flex; align-items:center; gap:7px; padding:10px 14px; background:#0e1430; border-bottom:1px solid #1c2652}
+  .term-bar i{width:11px; height:11px; border-radius:50%; display:block}
+  .term-bar i:nth-child(1){background:#ff5f57} .term-bar i:nth-child(2){background:#febc2e} .term-bar i:nth-child(3){background:#28c840}
+  .term-bar span{margin-left:8px; font-size:.78rem; color:#8390c4}
+  .term-body{padding:16px; font-size:.82rem; line-height:1.65; min-height:290px; white-space:pre-wrap; word-break:break-word}
+  .t-prompt{color:#4ade80} .t-path{color:#7c8cff} .t-key{color:#7dd3fc} .t-str{color:#fcd34d}
+  .caret{display:inline-block; width:8px; height:1em; background:#d7defa; vertical-align:-2px; animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
 
-        .ide-header {
-            background: #11121d;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+  /* SECTIONS */
+  section{padding:56px 0}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:26px}
+  .sec-head h2{font-size:clamp(1.6rem,3.5vw,2.2rem); margin:0; letter-spacing:-.02em}
+  .sec-head small{color:var(--muted)}
+  .grid{display:grid; gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr); align-items:start}
+  @media(max-width:860px){ .g3,.g2{grid-template-columns:1fr} }
+  .card{background:var(--card); border:1px solid var(--card-b); border-radius:var(--radius); padding:22px; transition:transform .2s, border-color .2s, box-shadow .2s}
+  .card:hover{border-color:color-mix(in srgb,var(--accent) 60%, var(--card-b))}
 
-        .window-dots {
-            display: flex;
-            gap: 8px;
-            margin-right: 20px;
-        }
+  /* STATS */
+  .stat .num{font-size:2.4rem; font-weight:700; letter-spacing:-.03em; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .stat p{margin:2px 0 0; color:var(--muted); font-size:.95rem}
 
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+  /* SKILLS */
+  .skill-group h3{margin:0 0 12px; font-size:1rem; color:var(--muted); font-weight:500; text-transform:uppercase; letter-spacing:.08em}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{font-size:.85rem; padding:5px 12px; border-radius:999px; border:1px solid var(--card-b); background:var(--bg2); transition:transform .15s, border-color .2s}
+  .chip:hover{transform:translateY(-2px); border-color:var(--accent)}
+  .lang{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 0}
+  .lang + .lang{border-top:1px dashed var(--card-b)}
+  .bar{height:8px; border-radius:99px; background:var(--bg2); width:130px; overflow:hidden}
+  .bar b{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:99px; width:0; transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+  .badge{font-size:.75rem; padding:2px 9px; border-radius:99px; background:color-mix(in srgb,var(--accent2) 16%, transparent); color:var(--accent2); font-weight:600}
 
-        .dot-red { background: var(--accent-red); }
-        .dot-yellow { background: var(--accent-orange); }
-        .dot-green { background: var(--accent-green); }
+  /* PROJECTS */
+  .proj{display:flex; flex-direction:column; gap:14px; position:relative}
+  .proj-top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap}
+  .area{font-size:.78rem; color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:.08em}
+  .star{font-size:.75rem; padding:2px 10px; border-radius:99px; background:color-mix(in srgb,var(--warm) 18%, transparent); color:var(--warm); font-weight:600}
+  .proj h3{margin:0; font-size:1.35rem; letter-spacing:-.01em}
+  .proj p{margin:0; color:var(--muted)}
+  .proj p strong, .proj li strong{color:var(--text)}
+  .insight{border-left:3px solid var(--warm); padding:8px 14px; background:color-mix(in srgb,var(--warm) 9%, transparent); border-radius:0 10px 10px 0; font-size:.95rem}
+  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(88px,1fr)); gap:10px}
+  .metric{background:var(--bg2); border-radius:12px; padding:10px 12px; text-align:center}
+  .metric b{display:block; font-size:1.25rem; color:var(--text)} .metric span{font-size:.75rem; color:var(--muted)}
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto}
+  .stack span{font-size:.75rem; padding:3px 10px; border-radius:8px; background:var(--bg2); color:var(--muted); font-family:'JetBrains Mono',monospace}
+  details{border-top:1px dashed var(--card-b); padding-top:10px}
+  summary{cursor:pointer; font-weight:500; color:var(--accent); list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:'▸ '; display:inline-block; transition:transform .2s}
+  details[open] summary::before{transform:rotate(90deg)}
+  details ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:.95rem}
+  details li{margin:5px 0}
+  .flow{display:flex; align-items:center; flex-wrap:wrap; gap:6px; font-size:.82rem}
+  .flow span{padding:4px 12px; border-radius:99px; border:1px solid var(--card-b); background:var(--bg2)}
+  .flow span.done{border-color:var(--ok); color:var(--ok)}
+  .flow em{color:var(--muted); font-style:normal}
+  .split{display:flex; height:30px; border-radius:10px; overflow:hidden; font-size:.74rem; font-weight:600; color:#0b1020}
+  .split div{display:flex; align-items:center; justify-content:center; white-space:nowrap; overflow:hidden; padding:0 6px; width:0; transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+  .split-legend{display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); gap:6px; flex-wrap:wrap}
+  .chat{background:var(--term); border-radius:14px; padding:12px 14px; font-size:.8rem; color:#d7defa; display:grid; gap:8px}
+  .chat .me{justify-self:end; background:#26306a; padding:6px 12px; border-radius:12px 12px 2px 12px; max-width:90%}
+  .chat .ai{background:#101a3d; padding:6px 12px; border-radius:12px 12px 12px 2px; max-width:95%}
+  .chat code{color:#fcd34d}
+  .tools{display:grid; gap:8px; grid-template-columns:repeat(2,1fr)}
+  @media(max-width:520px){ .tools{grid-template-columns:1fr} }
+  .tool{background:var(--bg2); border-radius:10px; padding:8px 10px; font-size:.82rem}
+  .tool code{display:block; color:var(--accent2); font-size:.78rem; margin-bottom:2px}
+  .tool span{color:var(--muted)}
+  .wide{grid-column:1/-1}
 
-        .ide-title {
-            font-family: var(--font-code);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+  /* CONTACT */
+  .contact{text-align:center; padding:48px 24px; border-radius:24px; border:1px solid var(--card-b);
+    background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%, var(--card)),color-mix(in srgb,var(--accent2) 12%, var(--card)))}
+  .contact h2{margin:0 0 8px; font-size:clamp(1.6rem,4vw,2.4rem); letter-spacing:-.02em}
+  .contact p{color:var(--muted); max-width:520px; margin:0 auto 24px}
+  .contact .cta{justify-content:center; margin-top:0}
+  footer{padding:28px 0 40px; text-align:center; color:var(--muted); font-size:.85rem}
 
-        .tab-active {
-            background: var(--editor-bg);
-            padding: 4px 12px;
-            border-radius: 4px 4px 0 0;
-            color: var(--text-main);
-            border-top: 2px solid var(--accent-blue);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 40px 30px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .developer-tag {
-            font-family: var(--font-code);
-            color: var(--accent-green);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .bio {
-            color: var(--text-muted);
-            max-width: 800px;
-            font-size: 1rem;
-            margin-bottom: 25px;
-        }
-
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .badge {
-            background: rgba(137, 180, 250, 0.1);
-            color: var(--accent-blue);
-            border: 1px solid rgba(137, 180, 250, 0.3);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-family: var(--font-code);
-            font-size: 0.8rem;
-        }
-
-        /* Interactive Terminal Section */
-        .terminal-section {
-            background: #0d0e15;
-            padding: 25px;
-            border-bottom: 1px solid var(--border-color);
-            font-family: var(--font-code);
-        }
-
-        .terminal-header {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .terminal-prompt {
-            color: var(--accent-green);
-        }
-
-        .terminal-path {
-            color: var(--accent-blue);
-        }
-
-        .terminal-output {
-            color: var(--text-main);
-            margin: 10px 0 20px 0;
-            padding-left: 15px;
-            border-left: 2px solid var(--border-color);
-        }
-
-        /* Projects Section */
-        .section-title {
-            padding: 30px 30px 10px 30px;
-            font-size: 1.5rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            padding: 20px 30px 40px 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-blue);
-        }
-
-        .project-card.favorite {
-            border-color: rgba(203, 166, 247, 0.5);
-            background: linear-gradient(180deg, var(--card-bg) 0%, rgba(203, 166, 247, 0.05) 100%);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .project-category {
-            font-family: var(--font-code);
-            font-size: 0.75rem;
-            color: var(--accent-purple);
-            text-transform: uppercase;
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            color: #fff;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            margin-bottom: 20px;
-        }
-
-        .highlight-box {
-            background: rgba(254, 179, 135, 0.1);
-            border-left: 3px solid var(--accent-orange);
-            padding: 10px 12px;
-            font-size: 0.85rem;
-            color: var(--accent-orange);
-            margin-bottom: 15px;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: auto;
-        }
-
-        .tech-tag {
-            background: #232538;
-            color: var(--text-main);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: var(--font-code);
-            font-size: 0.75rem;
-        }
-
-        /* Footer & Contact */
-        .footer-section {
-            padding: 30px;
-            background: #11121d;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .contact-btn {
-            color: var(--text-main);
-            text-decoration: none;
-            font-family: var(--font-code);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            transition: background 0.2s ease, border-color 0.2s ease;
-        }
-
-        .contact-btn:hover {
-            background: var(--border-color);
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            h1 { font-size: 1.8rem; }
-            .hero, .terminal-section, .projects-grid, .footer-section { padding: 20px; }
-            .footer-section { flex-direction: column; align-items: flex-start; }
-        }
-    </style>
+  /* REVEAL */
+  .js .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+  .js .reveal.in{opacity:1; transform:none}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important} html{scroll-behavior:auto}
+    .js .reveal{opacity:1; transform:none}
+  }
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px}
+</style>
 </head>
 <body>
 
-    <div class="ide-container">
-        <!-- Header della finestra IDE -->
-        <div class="ide-header">
-            <div class="window-dots">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-            </div>
-            <div class="ide-title">
-                <span class="tab-active">📄 GiuseppeDiRiso_Portfolio.config.js</span>
-            </div>
-        </div>
+<nav>
+  <div class="wrap">
+    <a class="logo mono" href="#top">&lt;<span>GDR</span> /&gt;</a>
+    <div class="links">
+      <a class="hide-sm" href="#chi-sono">Chi sono</a>
+      <a class="hide-sm" href="#skill">Skill</a>
+      <a href="#progetti">Progetti</a>
+      <a href="#contatti">Contatti</a>
+      <button class="theme" id="themeBtn" aria-label="Cambia tema chiaro/scuro" title="Cambia tema">🌓</button>
+    </div>
+  </div>
+</nav>
 
-        <!-- Hero / Presentazione -->
-        <section class="hero">
-            <div class="developer-tag">const developer = "Giuseppe Di Riso";</div>
-            <h1>Giuseppe Di Riso</h1>
-            <div class="subtitle">Data Scientist & Information Systems Specialist</div>
-            <p class="bio">
-                Studente presso l'<strong>Università degli Studi di Salerno</strong> in Business Information Systems e Data Science.
-                Mi occupo della modellazione di processi aziendali complessi, analisi statistica avanzata e sviluppo di sistemi e architetture orientate all'Intelligenza Artificiale (MCP Server).
-            </p>
-            <div class="badge-list">
-                <span class="badge">Python</span>
-                <span class="badge">R Studio</span>
-                <span class="badge">MCP Server</span>
-                <span class="badge">Claude AI</span>
-                <span class="badge">Odoo ERP</span>
-                <span class="badge">BPMN 2.0</span>
-                <span class="badge">ArchiMate 3.0</span>
-                <span class="badge">Cluster Analysis & PCA</span>
-            </div>
-        </section>
+<main id="top">
+<div class="wrap">
 
-        <!-- Simulazione Terminale -->
-        <section class="terminal-section">
-            <div class="terminal-header">Terminal Simulation — bash</div>
-            
-            <div>
-                <span class="terminal-prompt">giuseppe@dev-laptop</span>:<span class="terminal-path">~</span>$ whoami
-                <div class="terminal-output">Giuseppe Di Riso — Business Information Systems & Data Science Specialist</div>
-            </div>
-
-            <div>
-                <span class="terminal-prompt">giuseppe@dev-laptop</span>:<span class="terminal-path">~</span>$ cat about_me.json
-                <div class="terminal-output">
-{<br>
-&nbsp;&nbsp;"Ateneo": "Università degli Studi di Salerno",<br>
-&nbsp;&nbsp;"Focus": "Modellazione Processi, Analisi Statistica, AI Agents & MCP",<br>
-&nbsp;&nbsp;"Status": "Building intelligent systems & data-driven solutions 🚀"<br>
-}
-                </div>
-            </div>
-        </section>
-
-        <!-- Sezione Progetti -->
-        <div class="section-title">
-            <span>🚀 Progetti & Case Studies</span>
-        </div>
-
-        <section class="projects-grid">
-
-            <!-- Progetto 1: ArchiBike -->
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <span class="project-category">Business Information Systems</span>
-                    </div>
-                    <h2 class="project-title">ArchiBike: Ciclo Attivo & Fatturazione</h2>
-                    <p class="project-desc">
-                        Modellazione e simulazione enterprise per l'azienda ArchiBike S.r.l. Progettazione della struttura del Reparto Fatturazione Attiva e gestione differenziata dei flussi B2C e B2B.
-                    </p>
-                    <div class="highlight-box">
-                        <strong>Modellazione & ERP:</strong> Integrazione tra Archimate (organigramma aziendale HQ), BPMN 2.0 su Bizagi (workflow B2B/B2C con SDI) e implementazione su ERP Odoo (Stati: Bozza, Convalidata, Pagata).
-                    </div>
-                </div>
-                <div class="tech-tags">
-                    <span class="tech-tag">Odoo ERP</span>
-                    <span class="tech-tag">BPMN 2.0</span>
-                    <span class="tech-tag">ArchiMate</span>
-                    <span class="tech-tag">Bizagi</span>
-                </div>
-            </div>
-
-            <!-- Progetto 2: CSM -->
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <span class="project-category">Data Analysis & Statistics</span>
-                    </div>
-                    <h2 class="project-title">Analisi Mercato Cinematografico (CSM)</h2>
-                    <p class="project-desc">
-                        Studio statistico multivariato su un dataset di 231 film per individuare i driver di successo finanziario e virale al botteghino tramite ambiente R Studio.
-                    </p>
-                    <div class="highlight-box">
-                        <strong>Insight Chiave:</strong> I budget elevati non garantiscono viralità! Produzioni a basso costo superano i kolossal per ROI ed engagement social.
-                    </div>
-                </div>
-                <div class="tech-tags">
-                    <span class="tech-tag">R Studio</span>
-                    <span class="tech-tag">PCA</span>
-                    <span class="tech-tag">Ward Clustering</span>
-                    <span class="tech-tag">Stepwise Regression</span>
-                </div>
-            </div>
-
-            <!-- Progetto 3: AI Clinical Assistant (Preferito) -->
-            <div class="project-card favorite">
-                <div>
-                    <div class="project-header">
-                        <span class="project-category">Programming for Data Science ⭐</span>
-                    </div>
-                    <h2 class="project-title">AI Clinical Assistant (MCP Server)</h2>
-                    <p class="project-desc">
-                        Organismo digitale per l'assistenza clinica avanzata. Estrae, pulisce e processa i dati dei pazienti esponendo 4 tool personalizzati per l'interazione semantica con Claude AI.
-                    </p>
-                    <div class="highlight-box" style="border-color: var(--accent-purple); background: rgba(203, 166, 247, 0.1); color: var(--accent-purple);">
-                        <strong>Tool MCP Implementati:</strong> <code>analyze_patient</code>, <code>dataset_risk_summary</code>, <code>simple_risk_score</code> e <code>analyze_similar</code> con visualizzazione grafica dei range clinici.
-                    </div>
-                </div>
-                <div class="tech-tags">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">MCP Protocol</span>
-                    <span class="tech-tag">Claude AI</span>
-                    <span class="tech-tag">Data Cleaning</span>
-                </div>
-            </div>
-
-            <!-- Progetto 4: Work in Progress -->
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <span class="project-category">In Sviluppo 🔮</span>
-                    </div>
-                    <h2 class="project-title">Predictive Health Dashboard</h2>
-                    <p class="project-desc">
-                        Evoluzione dell'assistente clinico orientata alla medicina di precisione. Piattaforma duale con supporto di Machine Learning per tarare la normalità dei dati sulla storia del paziente.
-                    </p>
-                    <div class="highlight-box" style="border-color: var(--accent-green); background: rgba(166, 227, 161, 0.1); color: var(--accent-green);">
-                        <strong>Status:</strong> Layout a doppia vista (Paziente vs Medico Esperto) e calibrazione dinamica delle soglie tramite modelli ML in corso di perfezionamento.
-                    </div>
-                </div>
-                <div class="tech-tags">
-                    <span class="tech-tag">Machine Learning</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Precision Medicine</span>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Footer / Contatti -->
-        <footer class="footer-section">
-            <div>
-                <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">Giuseppe Di Riso</div>
-                <div style="color: var(--text-muted); font-size: 0.85rem;">Scafati / Salerno, Italia</div>
-            </div>
-
-            <div class="contact-links">
-                <a href="mailto:g.diriso@studenti.unisa.it" class="contact-btn">
-                    <span>✉️ Email</span>
-                </a>
-                <a href="https://github.com/peppebrug" target="_blank" class="contact-btn">
-                    <span>💻 GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/giuseppe-di-riso" target="_blank" class="contact-btn">
-                    <span>🔗 LinkedIn</span>
-                </a>
-            </div>
-        </footer>
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <span class="eyebrow"><i class="dot"></i> Master's student · Università di Salerno</span>
+      <h1>Ciao, sono <span class="grad">Giuseppe</span> <span class="wave" aria-hidden="true">👋</span></h1>
+      <p class="role"><b>Data Scientist</b> &amp; <b>Information Systems</b> specialist</p>
+      <p class="lead">
+        Studente universitario presso l'<strong>Università degli Studi di Salerno</strong> in Business Information Systems e Data Science.
+        Mi appassiona trasformare processi aziendali complessi e dataset articolati in soluzioni chiare:
+        modelli statistici, flussi gestionali ed architetture basate su agenti AI interattivi.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#progetti">Guarda i progetti →</a>
+        <a class="btn" href="https://www.linkedin.com/in/giuseppe-di-riso-56436a254" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn" href="https://github.com/peepbrug" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
     </div>
 
-</body>
-</html>
-
+    <div class="term" aria-label="Simulazione di terminale">
+      <div class="term-bar"><i></i><i></i><i></i><span class="mono">giuseppe@unisa: ~</span></div>
+      <div class="term-body mono" id="term" aria-live="off">
